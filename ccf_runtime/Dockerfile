@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS build
 
 ARG PLATFORM
+ARG CCF_VERSION
 
 RUN tdnf update -y && tdnf install -y \
     ca-certificates \
@@ -9,7 +10,6 @@ RUN tdnf update -y && tdnf install -y \
 # Install ccf runtime and its minimal dependencies into a staging location
 # then copy into the final distroless image
 RUN mkdir /staging \
-    && CCF_VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/microsoft/CCF/releases/latest | sed 's/^.*ccf-//') \
     && wget https://github.com/microsoft/CCF/releases/download/ccf-${CCF_VERSION}/ccf_${PLATFORM}_${CCF_VERSION}_x86_64.rpm -O run.rpm \
     && tdnf install -y --releasever=3.0 --installroot /staging run.rpm \
     && tdnf clean all \

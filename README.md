@@ -6,7 +6,8 @@ This repository provides scripts and Dockerfiles to build a minimal CCF runtime 
 
 - **ccf_runtime/**: Contains a Dockerfile to build a minimal CCF runtime image with only the required dependencies.
 - **myapp/**: Contains a Dockerfile to build a sample application image using the `ccf_runtime` image as its base.
-- **use_minimal_ccf.sh**: Script to build both images and run the sample application in a container.
+- **use_minimal_ccf.sh**: Script to build sample application image in a container.
+- **run_app.sh**: Script to run the sample application in a container.
 
 ## Usage
 
